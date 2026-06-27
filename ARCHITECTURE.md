@@ -2,7 +2,7 @@
 
 供维护者与 AI 助手快速定位模块，**每次发版请同步更新**「当前版本」与「最近结构变更」。
 
-**当前版本：** `LazyFisher合并版V1.9.user.js`
+**当前版本：** `LazyFisher合并版V1.10.user.js`
 
 ---
 
@@ -129,6 +129,7 @@ LazyFisher合并版V*.user.js   (~19k 行，单文件油猴脚本)
 
 | 版本 | 说明 |
 |------|------|
+| V1.10 | 排序面板 `clearFishSortPanelIfUnused`；弹窗网格存在时不误删 `#lf-boat-fish-sort-panel` |
 | V1.9 | `FEATURE_DEFAULTS` 扩展：装饰/低频功能默认 OFF |
 | V1.8 | `#lf-settings-root` 改为可拖动悬浮按钮，位置保存到 `lf_settings_float_pos` |
 | V1.7 | `fish_keep_notes` 时间备注；历史总览 markLine；统计评级偏移渲染兜底 |
