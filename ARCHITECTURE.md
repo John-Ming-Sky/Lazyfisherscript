@@ -2,7 +2,7 @@
 
 供维护者与 AI 助手快速定位模块，**每次发版请同步更新**「当前版本」与「最近结构变更」。
 
-**当前版本：** `LazyFisher合并版V1.3.user.js`
+**当前版本：** `LazyFisher合并版V1.9.user.js`
 
 ---
 
@@ -11,7 +11,7 @@
 ```
 LazyFisher合并版V*.user.js   (~19k 行，单文件油猴脚本)
 ├── 文件头 @name / @version / @match …
-├── LazyFisherMergedBootstrap   三模块总开关 + GM 菜单
+├── LazyFisherMergedBootstrap   三模块总开关 + 可拖动悬浮设置入口
 ├── Module: LazyFisher信息增强    默认启用
 ├── Module: lazyfisher辅助增强    默认启用（含 FISH_DATABASE 大表）
 └── Module: LazyFisher环境显示    默认启用
@@ -49,8 +49,8 @@ LazyFisher合并版V*.user.js   (~19k 行，单文件油猴脚本)
 | 符号 | 职责 |
 |------|------|
 | `Utils` / `Rarity` / `ScoreOffsetCalc` | 工具、科技分判定、评级偏移统计 |
-| `FishKeepHistory` | 鱼护数据持久化、价格/经验计算 |
-| `FishKeepHistoryUi` | 弹窗：历史总览、收益、**鱼护记录**、统计 |
+| `FishKeepHistory` | 鱼护数据持久化、价格/经验计算、时间备注 |
+| `FishKeepHistoryUi` | 弹窗：历史总览、收益、时间备注、**鱼护记录**、统计 |
 | `FishKeepUi` | 设置弹窗：鱼护管理、数据导入导出 |
 | `BoatHelper` | 船钓/区域鱼群网格增强、排序、标签 `__LF_ENHANCE_FISH_GRIDS` |
 | `CatchTiming` | 消息页 & 钓鱼页日志/上鱼框：评级着色、狠活/败北、鱼口间隔 |
@@ -75,7 +75,7 @@ LazyFisher合并版V*.user.js   (~19k 行，单文件油猴脚本)
 
 **分界注释：** `// Module: lazyfisher辅助增强(公开版)`
 
-- **`FISH_DATABASE`**：内嵌 JSON 鱼种库（体积大，勿随意重排）
+- **`FISH_DATABASE`**：内嵌 LZ 压缩 JSON（`FISH_DATABASE_COMPRESSED`），经 `getFishDatabaseItems()` 懒解压；`window.LazyFisherFishDb.getItems()`
 - **`FEATURES` + `INIT_MAP`**：按开关调用 `initXxx()`
 - **主要 `init` 函数：**
 
@@ -129,6 +129,12 @@ LazyFisher合并版V*.user.js   (~19k 行，单文件油猴脚本)
 
 | 版本 | 说明 |
 |------|------|
+| V1.9 | `FEATURE_DEFAULTS` 扩展：装饰/低频功能默认 OFF |
+| V1.8 | `#lf-settings-root` 改为可拖动悬浮按钮，位置保存到 `lf_settings_float_pos` |
+| V1.7 | `fish_keep_notes` 时间备注；历史总览 markLine；统计评级偏移渲染兜底 |
+| V1.6 | 页面底栏 `#lf-settings-root` 功能开关；`registerFeatureSettings` |
+| V1.5 | 鱼种库 LZ 懒解压；echarts/mathjs 按需加载；公开版 idle 分批 init |
+| V1.4 | 船钓 Observer 降噪；环境显示/实时波动图默认 OFF；罚站提示 |
 | V1.3 | 败北稀有区间 `[98.85,99)`；钓行统计鱼种列表徽章与鱼名分离 |
 | V1.2 | 标签首字缩写；`resolveSortFishGrid` 全网格排序面板 |
 | V1.1 | `initFishWeightGlow` 跳过 `.region-fish-grid`；`enhanceFishGrid` 默认 `withPrice`；`resolveFishCardContent` 不缓存失败 |
